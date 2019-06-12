@@ -1,2 +1,3 @@
 springcloud例子项目
-第一版客户端采用ribbin负载
+第一版客户端采用ribbon负载
+第二版采用feign修改
