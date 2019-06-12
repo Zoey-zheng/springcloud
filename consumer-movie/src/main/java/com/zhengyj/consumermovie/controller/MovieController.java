@@ -1,6 +1,7 @@
 package com.zhengyj.consumermovie.controller;
 
 import com.zhengyj.consumermovie.entity.User;
+import com.zhengyj.consumermovie.service.UserFeign;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,15 +27,17 @@ public class MovieController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MovieController.class);
 
 
-    @Autowired
-    private RestTemplate restTemplate;
-
+   // @Autowired
+   // private RestTemplate restTemplate;
+   @Autowired
+   private UserFeign userFeign;
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 
     @GetMapping("/user/{id}")
     public User getOneById(@PathVariable Long id){
-        return restTemplate.getForObject("http://producer-user/"+id,User.class);
+       // return restTemplate.getForObject("http://producer-user/"+id,User.class);
+        return userFeign.getOne(id);
     }
 
     /**
